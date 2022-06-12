@@ -8,22 +8,26 @@ class ShowForm extends StatelessWidget {
   final String hind;
   final bool? obsecu;
   final Function()? redEyeFunc;
+  final IconData? iconData;
   const ShowForm({
     Key? key,
     required this.hind,
     this.obsecu,
     this.redEyeFunc,
+    this.iconData,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: TextFormField(
         obscureText: obsecu ?? false,
         decoration: InputDecoration(
           suffixIcon: redEyeFunc == null
-              ? const SizedBox()
+              ? iconData == null
+                  ? const SizedBox()
+                  : Icon(iconData)
               : IconButton(
                   onPressed: redEyeFunc,
                   icon: Icon(Icons.remove_red_eye),
