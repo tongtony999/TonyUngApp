@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:tonyungapp/utility/my_constant.dart';
 import 'package:tonyungapp/widgets/show_form.dart';
 import 'package:tonyungapp/widgets/show_icon_button.dart';
@@ -20,6 +21,34 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
     'Other',
   ];
   String? gender;
+
+  @override
+  void initState() {
+    super.initState();
+    findPosition();
+  }
+
+Future<void> findPosition() async {
+
+bool LocationServiceEnable;
+LocationPermission locationPermission;
+
+
+LocationServiceEnable = await Geolocator.isLocationServiceEnabled();
+
+
+if (!LocationServiceEnable) {
+  //ไม่ได้เปิด service enable
+print('ไม่ได้เปิด service enable');
+  
+} else {
+  //เปิด service location
+  print ('เปิด service location');
+}
+
+
+
+}
 
   @override
   Widget build(BuildContext context) {
